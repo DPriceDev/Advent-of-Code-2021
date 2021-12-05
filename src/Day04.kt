@@ -73,13 +73,13 @@ fun main() {
             val columns = board.first().map { Column() }
             val rows = board.map { Row() }
 
-            board.foldIndexed(numberMap) { rowIndex, _, row ->
-                row.foldIndexed(numberMap) { columnIndex, _, number ->
+            board.forEachIndexed { rowIndex, row ->
+                row.forEachIndexed { columnIndex, number ->
                     val trackingNumber = Number(number, rows[rowIndex], columns[columnIndex], trackingBoard)
                     numberMap[number] = numberMap.getOrDefault(number, listOf()).plus(trackingNumber)
-                    numberMap
                 }
             }
+            numberMap
         }
 
         var boardCount = initialBoards.size
