@@ -22,7 +22,13 @@ fun main() {
     // Part 1
     fun part1(input: List<String>) = input
         .asSequence()
-        .map { line -> regex.find(line)?.destructured?.toList()?.map { it.toInt() } ?: error("Invalid coords") }
+        .map { line ->
+            regex.find(line)
+                ?.destructured
+                ?.toList()
+                ?.map { it.toInt() }
+                ?: error("Invalid coords")
+        }
         .map { (x1, y1, x2, y2) -> Line(Coordinate(x1, y1), Coordinate(x2, y2)) }
         .filter { it.start.x == it.end.x || it.start.y == it.end.y }
         .fold(mutableMapOf<Int, MutableMap<Int, Point>>()) { map, (start, end) ->
@@ -33,11 +39,16 @@ fun main() {
         .map { pointMap -> pointMap.value.values.count { it.value > 1 } }
         .sum()
 
-
     // Part 2
     fun part2(input: List<String>) = input
         .asSequence()
-        .map { line -> regex.find(line)?.destructured?.toList()?.map { it.toInt() } ?: error("Invalid coords") }
+        .map { line ->
+            regex.find(line)
+                ?.destructured
+                ?.toList()
+                ?.map { it.toInt() }
+                ?: error("Invalid coords")
+        }
         .map { (x1, y1, x2, y2) -> Line(Coordinate(x1, y1), Coordinate(x2, y2)) }
         .fold(mutableMapOf<Int, MutableMap<Int, Point>>()) { map, (start, end) ->
             (start..end).fold(map) { map, (x, y) ->
