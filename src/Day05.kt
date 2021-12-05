@@ -35,10 +35,8 @@ fun main() {
                 map.apply { getOrPut(y) { mutableMapOf() }.getOrPut(x) { Point(0) }.value += 1 }
             }
         }
-        .map { it.value.values }
-        .flatten()
-        .filter { it.value > 1 }
-        .size
+        .map { pointMap -> pointMap.value.values.count { it.value > 1 } }
+        .sum()
 
 
     // Part 2
@@ -56,10 +54,8 @@ fun main() {
                 map.apply { getOrPut(y) { mutableMapOf() }.getOrPut(x) { Point(0) }.value += 1 }
             }
         }
-        .map { it.value.values }
-        .flatten()
-        .filter { it.value > 1 }
-        .size
+        .map { pointMap -> pointMap.value.values.count { it.value > 1 } }
+        .sum()
 
     // Output
     val input = readInput("Day05")
