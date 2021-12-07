@@ -11,20 +11,14 @@ fun main() {
         val max = positions.maxOf { it }
         val min = positions.minOf { it }
 
-        val distanceMaps = (min..max).mapIndexed { index, target ->
-            target to positions.map { position ->
-                abs(position - target)
+        return (min..max)
+            .map { target ->
+                target to positions.map { position -> abs(position - target) }
             }
-        }
-
-        val distances = distanceMaps.map { it.first to it.second.sum() }
-        val minimumDistance = distances.reduce { acc, i ->
-            if(acc.second < i.second) acc else i
-        }
-
-        return minimumDistance.second
+            .map { it.first to it.second.sum() }
+            .reduce { acc, i -> if(acc.second < i.second) acc else i }
+            .second
     }
-
 
     // Part 2
     fun part2(input: String) : Int {
@@ -35,25 +29,22 @@ fun main() {
         val max = positions.maxOf { it }
         val min = positions.minOf { it }
 
-        val distanceMaps = (min..max).map { target ->
-            target to positions.map { position -> abs(position - target) }
-        }
-
-        val distances = distanceMaps.map { (target, positions) ->
-            target to positions.sumOf { position ->
-                position * (position + 1) / 2
+        return (min..max)
+            .map { target ->
+                target to positions.map { position -> abs(position - target) }
             }
-        }
-
-        val minimumDistance = distances.reduce { acc, i ->
-            if(acc.second < i.second) acc else i
-        }
-
-        return minimumDistance.second
+            .map { (target, positions) ->
+                target to positions.sumOf { position ->
+                    position * (position + 1) / 2
+                }
+            }
+            .reduce { acc, i -> if (acc.second < i.second) acc else i }
+            .second
     }
 
     // Output
     val input = readInput("Day07").first()
+
     println(part1(input))
     println(part2(input))
 }
