@@ -3,6 +3,10 @@
 fun main() {
     val regex = """(\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) (\w+) \| (\w+) (\w+) (\w+) (\w+)""".toRegex()
 
+    fun String.removeFrom(list: MutableList<String>) : String {
+        list.remove(this)
+        return this
+    }
 
     // Part 1
     fun part1(input: List<String>) = input
@@ -10,13 +14,6 @@ fun main() {
         .map { it.subList(10, 14) }.sumOf { digits ->
             digits.count { it.length == 2 || it.length == 3 || it.length == 4 || it.length == 7 }
         }
-
-    // 476
-
-    fun String.removeFrom(list: MutableList<String>) : String {
-        list.remove(this)
-        return this
-    }
 
     // Part 2
     fun part2(input: List<String>) = input
