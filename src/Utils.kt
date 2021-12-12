@@ -1,6 +1,7 @@
 import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
+import kotlin.system.measureTimeMillis
 
 /**
  * Reads lines from the given input txt file.
@@ -43,3 +44,12 @@ fun <T> List<List<T>>.subGrid(columnRange: IntRange, rowRange: IntRange) : List<
 }
 
 fun IntRange.coerceIn(min: Int, max: Int) : IntRange = first.coerceAtLeast(min)..last.coerceAtMost(max)
+
+val String.isLowercase
+    get() = all { ('a'..'z').contains(it) }
+
+fun <T> measureTimeWithAnswer(action: () -> T) : Pair<Long, T> {
+    val answer: T
+    val milliseconds = measureTimeMillis { answer = action() }
+    return milliseconds to answer
+}
