@@ -53,3 +53,7 @@ fun <T> measureTimeWithAnswer(action: () -> T) : Pair<Long, T> {
     val milliseconds = measureTimeMillis { answer = action() }
     return milliseconds to answer
 }
+
+fun <T> List<List<T>>.getGridOrNull(x: Int, y: Int) = getOrNull(y)?.getOrNull(x)
+
+fun <T> List<List<T>>.getGrid(x: Int, y: Int) = get(y).get(x)

@@ -37,7 +37,7 @@ fun main() {
     val input = readInput("Day14").parse()
 
     val (time1, answer1) = measureTimeWithAnswer { part1(input.first, input.second) }
-    println("part 1 answer = $answer1 taking $time1 milliseconds")
+    println("part 1 taking $time1 milliseconds")
     val (time2, answer2) = measureTimeWithAnswer { part2(input.first, input.second) }
-    println("part 2 answer = $answer2 taking $time2 milliseconds")
+    println("part 2 taking $time2 milliseconds")
 }
